@@ -3,4 +3,14 @@
     <string name="title_converter">Converter</string>
     <string name="title_rates">Rates</string>
     <string name="title_settings">Settings</string>
+    <string name="switch_currencies">Switch currencies</string>
+    <string name="amount">Amount</string>
+    <string name="currency_code_euro">EUR</string>
+    <string name="country_euro">Euro</string>
+    <string name="choose_currency">Choose currency</string>
+    <string name="country_flag">Country flag</string>
+    <string name="equals_sign">=</string>
+    <string name="currency_symbol">Currency symbol</string>
+    <string name="currency_code_euro2">USD</string>
+    <string name="currency_name2">American Dollar</string>
 </resources>
