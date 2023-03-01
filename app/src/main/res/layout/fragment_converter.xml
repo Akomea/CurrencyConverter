@@ -7,14 +7,15 @@
     tools:context=".ui.converter.ConverterFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5"
+        android:id="@+id/cardViewTop"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="20dp"
         app:cardElevation="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/top_column"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="24dp"
@@ -50,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textFontWeight="700"
+                        android:textStyle="bold"
                         android:text="@string/currency_code_euro"
                         />
 
@@ -68,9 +71,6 @@
                     android:layout_marginTop="10dp"
                     app:tint="@color/grey"
                     android:src="@drawable/ic_arrow_forward_24dp"/>
-
-
-
 
             </LinearLayout>
 
@@ -110,7 +110,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
+        android:id="@+id/cardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="24dp"
@@ -131,7 +131,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewBottom"
         tools:layout_editor_absoluteX="30dp" />
 
     <Button
@@ -143,9 +143,9 @@
         android:layout_marginBottom="20dp"
         android:text="@string/switch_currencies"
         app:icon="@drawable/ic_import_export_24"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTop"
         app:layout_constraintVertical_bias="0.391"
         />
 

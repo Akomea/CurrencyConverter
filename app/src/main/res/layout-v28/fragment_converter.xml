@@ -7,14 +7,15 @@
     tools:context=".ui.converter.ConverterFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5"
+        android:id="@+id/cardViewTop"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="20dp"
         app:cardElevation="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/top_column"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="24dp"
@@ -36,8 +38,8 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/flag_of_europe"
-                    android:contentDescription="@string/country_flag"/>
+                    android:contentDescription="@string/country_flag"
+                    android:src="@drawable/flag_of_europe" />
 
                 <LinearLayout
                     android:id="@+id/currency_layout"
@@ -45,8 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="4dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/currency_code"
@@ -59,8 +60,7 @@
                         android:id="@+id/currency_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/country_euro"
-                        />
+                        android:text="@string/country_euro" />
 
                 </LinearLayout>
 
@@ -70,9 +70,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="170dp"
                     android:layout_marginTop="10dp"
-                    app:tint="@color/grey"
+                    android:contentDescription="@string/choose_currency"
                     android:src="@drawable/ic_arrow_forward_24dp"
-                    android:contentDescription="@string/choose_currency" />
+                    app:tint="@color/grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,7 +113,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
+        android:id="@+id/cardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="24dp"
@@ -133,6 +133,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/top_column2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="24dp"
@@ -163,7 +164,7 @@
 
                     <TextView
                         android:id="@+id/currency_name2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:text="@string/currency_name2"
                         />
@@ -172,7 +173,7 @@
 
                 <ImageView
                     android:id="@+id/choose_currency2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
                     android:layout_marginTop="10dp"
@@ -226,7 +227,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewBottom"
         tools:layout_editor_absoluteX="30dp" />
 
     <Button
@@ -238,9 +239,9 @@
         android:layout_marginBottom="20dp"
         android:text="@string/switch_currencies"
         app:icon="@drawable/ic_import_export_24"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTop"
         app:layout_constraintVertical_bias="0.391"
         />
 
