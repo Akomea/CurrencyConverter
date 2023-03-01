@@ -31,47 +31,53 @@
                 android:id="@+id/top_column"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/flag_of_europe"/>
+                    android:contentDescription="@string/country_flag"
+                    android:src="@drawable/flag_of_europe" />
 
                 <LinearLayout
+                    android:id="@+id/currency_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="4dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/currency_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textFontWeight="700"
-                        android:textStyle="bold"
                         android:text="@string/currency_code_euro"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/currency_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/country_euro"
-                        />
+                        android:text="@string/country_euro" />
 
                 </LinearLayout>
 
+                <Spinner
+                    android:id="@+id/spinner_first_conversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
                 <ImageView
+                    android:id="@+id/choose_currency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="170dp"
                     android:layout_marginTop="10dp"
-                    app:tint="@color/grey"
-                    android:src="@drawable/ic_arrow_forward_24dp"/>
-
+                    android:contentDescription="@string/choose_currency"
+                    android:src="@drawable/ic_arrow_forward_24dp"
+                    app:tint="@color/grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -87,24 +93,26 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_firstConversion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/amount"
+                        android:inputType="number"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
+                    android:id="@+id/euro_symbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60dp"
                     android:layout_marginLeft="10dp"
                     app:tint="@color/grey"
-                    android:src="@drawable/ic_euro_symbol_24dp" />
-
+                    android:src="@drawable/ic_euro_symbol_24dp"
+                    android:contentDescription="@string/currency_symbol"/>
 
             </LinearLayout>
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -122,7 +130,104 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintVertical_bias="0.647" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/top_column2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/flag_of_the_united_states"
+                    android:contentDescription="@string/country_flag"/>
+
+                <LinearLayout
+                    android:id="@+id/currency_layout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/currency_code2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_code_euro2"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/currency_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_name2"
+                        />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_second_conversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/choose_currency2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="10dp"
+                    app:tint="@color/grey"
+                    android:src="@drawable/ic_arrow_forward_24dp"
+                    android:contentDescription="@string/choose_currency" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="270dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="24dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_secondConversion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/amount"
+                        android:inputType="number"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/euro_symbol2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="10dp"
+                    app:tint="@color/grey"
+                    android:src="@drawable/ic_usd_symbol_24dp"
+                    android:contentDescription="@string/currency_symbol"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/text_converter"
@@ -169,7 +274,7 @@
             android:id="@+id/textViewEquals"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:text="="
+            android:text="@string/equals_sign"
             android:textAlignment="center"
             android:textSize="48sp"
             android:translationY="-5dp" />
