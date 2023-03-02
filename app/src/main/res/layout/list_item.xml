@@ -94,14 +94,6 @@
                 android:textColor="@color/black"
                 android:textSize="14dp"/>
 
-            <TextView
-                android:id="@+id/convertedCurrencySymbol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="$"
-                android:textColor="@color/black"
-                android:textSize="14dp"/>
-
         </LinearLayout>
 
 

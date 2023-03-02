@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kennakomea.currencyconverter.R
 import com.kennakomea.currencyconverter.databinding.FragmentRatesBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.json.JSONObject
 import java.net.URL
 
@@ -54,37 +51,58 @@ class RatesFragment : Fragment() {
             R.drawable.flag_of_europe,
             R.drawable.gbp_flag,
             R.drawable.flag_of_the_united_states,
-
+            R.drawable.flag_of_denmark,
+            R.drawable.flag_of_sweden,
+            R.drawable.flag_of_australia,
+            R.drawable.flag_of_canada,
+            R.drawable.flag_of_japan,
         )
-
         currencyCode = arrayOf(
             "EUR",
             "GBP",
             "USD",
+            "DKK",
+            "SEK",
+            "AUD",
+            "CAD",
+            "JPY",
         )
-
         convertedAmount = arrayOf(
-        )
+            0.0F,
+            0.0F,
+            0.0F,
+            0.0F,
+            0.0F,
+            0.0F,
+            0.0F,
+            0.0F,
 
+        )
         currencySymbol = arrayOf(
             "€",
             "£",
             "$",
-
+            "kr",
+            "kr",
+            "$",
+            "$",
+            "¥",
         )
-
         currencyName = arrayOf(
             "Euro",
             "British Pounds",
             "US Dollars",
+            "Danish Krone",
+            "Swedish Krone",
+            "Australian Dollars",
+            "Canadian Dollars",
+            "Japanese Yen",
 
         )
 
         newRecylerview = binding.recyclerView
         newRecylerview.layoutManager = LinearLayoutManager(this.context)
         newRecylerview.setHasFixedSize(true)
-
-        //getUserdata(baseCurrency)
         spinnerSetup()
 
         return root
@@ -119,8 +137,20 @@ class RatesFragment : Fragment() {
                     id: Long
                 ) {
                     baseCurrency = parent?.getItemAtPosition(position).toString()
-                    println("Hello from spinner code "+baseCurrency)
-                    getUserdata(baseCurrency)
+                    getCurrencyData()
+                    when (baseCurrency) {
+                        "EUR" -> updateTopUI(R.drawable.flag_of_europe)
+                        "GBP" -> updateTopUI(R.drawable.gbp_flag)
+                        "USD" -> updateTopUI(R.drawable.flag_of_the_united_states)
+                        "DKK" -> updateTopUI(R.drawable.flag_of_denmark)
+                        "SEK" -> updateTopUI(R.drawable.flag_of_sweden)
+                        "AUD" -> updateTopUI(R.drawable.flag_of_australia)
+                        "CAD" -> updateTopUI(R.drawable.flag_of_canada)
+                        "JPY" -> updateTopUI(R.drawable.flag_of_japan)
+                        else -> { // Note the block
+                            updateTopUI(R.drawable.flag_of_europe)
+                        }
+                    }
                     //getApiResult()
                 }
 
@@ -128,70 +158,34 @@ class RatesFragment : Fragment() {
         }
     }
 
-//    private fun getApiResult(items: ArrayList<String>) {
-//        //val APIKey = ""
-//        val API = "https://open.er-api.com/v6/latest/$baseCurrency"
-//
-//        //https://v6.exchangerate-api.com/v6/YOUR-API-KEY/history/USD/YEAR/MONTH/DAY
-//
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val apiResult = URL(API).readText()
-//                val jsonObject = JSONObject(apiResult)
-//                conversionRate =
-//                    jsonObject.getJSONObject("rates").getString(convertedToCurrency)
-//                        .toFloat()
-//
-//                Log.d("Main", "$conversionRate")
-//                Log.d("Main", apiResult)
-//
-//                withContext(Dispatchers.Main) {
-//                    var fromConversion = 100;
-//                    text =
-//                        ((binding.etFirstConversion.text.toString()
-//                            .toFloat()) * conversionRate).toString()
-//                    binding.etSecondConversion?.setText(text)
-//
-//
-//                    String newValue = text;
-//                    int updateIndex = 3;
-//                    data.set(updateIndex, newValue);
-//                    adapter.notifyItemChanged(updateIndex);
-//                }
-//
-//            } catch (e: Exception) {
-//                Log.e("Main", "$e")
-//            }
-//        }
-//    }
 
-
-    private fun getUserdata(base: String) {
-        val API = "https://open.er-api.com/v6/latest/$base"
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun getCurrencyData() {
+        val API = "https://open.er-api.com/v6/latest/$baseCurrency"
         newArrayList = arrayListOf<Currency>()
        // newArrayList.clear()
 
-        for((i, cc) in currencyCode.withIndex()){
+        for(i in imageId.indices){
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val apiResult = URL(API).readText()
                     val jsonObject = JSONObject(apiResult)
                     conversionRate =
-                        jsonObject.getJSONObject("rates").getString(cc)
+                        jsonObject.getJSONObject("rates").getString(currencyCode[i])
                             .toFloat()
                     println("THIS IS BASE CURRENCY!!!!" + baseCurrency)
 //                    println(jsonObject.getJSONObject("rates"))
 
                     Log.d("CONVERSION RATE!!!", "$conversionRate")
-                    Log.d("CURRENCY CODE!!!!", cc)
+                    Log.d("CURRENCY CODE!!!!", currencyCode[i])
 
                     withContext(Dispatchers.Main) {
 
                         val currency = Currency(imageId[i],
-                            cc,
+                            currencyCode[i],
                             currencyName[i],
                             currencySymbol[i],
-                            (100*conversionRate).toString())
+                            (100* conversionRate).toString())
                         newArrayList.add(currency)
                         newRecylerview.adapter?.notifyDataSetChanged()
                     }
@@ -207,6 +201,10 @@ class RatesFragment : Fragment() {
 
         newRecylerview.adapter = CurrencyAdapter(newArrayList)
 
+    }
+
+    fun updateTopUI( currencyFlag: Int) {
+        binding.spinnerFlag.setImageResource(currencyFlag)
     }
 
     override fun onDestroyView() {

@@ -26,7 +26,7 @@ class CurrencyAdapter(private val currencyList : ArrayList<Currency>) : Recycler
 
         val currentItem = currencyList[position]
         holder.titleImage.setImageResource(currentItem.image)
-        holder.tvHeading.text = currentItem.currencyCode
+        holder.heading.text = currentItem.currencyCode
         holder.currencyName.text = currentItem.currencyName
         holder.currencySymbol.text = currentItem.currencySymbol
         holder.convertedAmount.text = currentItem.convertedAmount
@@ -42,7 +42,7 @@ class CurrencyAdapter(private val currencyList : ArrayList<Currency>) : Recycler
     class MyViewHolder(itemView : View, ) : RecyclerView.ViewHolder(itemView){
 
         val titleImage : ShapeableImageView = itemView.findViewById(R.id.title_image)
-        val tvHeading : TextView = itemView.findViewById(R.id.currencyHeading)
+        val heading : TextView = itemView.findViewById(R.id.currencyHeading)
         val currencyName : TextView = itemView.findViewById(R.id.currency_name)
         val currencySymbol : TextView = itemView.findViewById(R.id.baseCurrencySymbol)
         val convertedAmount : TextView = itemView.findViewById(R.id.convertedAmount)

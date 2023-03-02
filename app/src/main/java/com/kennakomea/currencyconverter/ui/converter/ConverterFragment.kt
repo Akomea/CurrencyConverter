@@ -88,13 +88,6 @@ class ConverterFragment : Fragment() {
 
             //https://v6.exchangerate-api.com/v6/YOUR-API-KEY/history/USD/YEAR/MONTH/DAY
 
-            if (baseCurrency == convertedToCurrency) {
-                Toast.makeText(
-                    context,
-                    "Please pick a currency to convert",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
                         val apiResult = URL(API).readText()
@@ -119,7 +112,6 @@ class ConverterFragment : Fragment() {
                         Log.e("Main", "$e")
                     }
                 }
-            }
         }
     }
 
@@ -186,8 +178,14 @@ class ConverterFragment : Fragment() {
                     baseCurrency = parent?.getItemAtPosition(position).toString()
                     getApiResult()
                     when (baseCurrency) {
+                        "EUR" -> updateTopUI("Euro",R.drawable.flag_of_europe, R.drawable.ic_euro_symbol_24dp)
                         "GBP" -> updateTopUI("British Pounds",R.drawable.gbp_flag, R.drawable.ic_currency_pound_24dp)
                         "USD" -> updateTopUI("US Dollar",R.drawable.flag_of_the_united_states, R.drawable.ic_usd_symbol_24dp)
+                        "DKK" -> updateTopUI("Danish Krone",R.drawable.flag_of_denmark, R.drawable.krona)
+                        "SEK" -> updateTopUI("Swedish Krone",R.drawable.flag_of_sweden, R.drawable.krona)
+                        "AUD" -> updateTopUI("Australian Dollar",R.drawable.flag_of_australia, R.drawable.ic_usd_symbol_24dp)
+                        "CAD" -> updateTopUI("Canadian Dollar",R.drawable.flag_of_canada, R.drawable.ic_usd_symbol_24dp)
+                        "JPY" -> updateTopUI("Japanese Dollar",R.drawable.flag_of_japan, R.drawable.jpy_symbol)
                         else -> { // Note the block
                             updateTopUI("Euro",R.drawable.flag_of_europe, R.drawable.ic_euro_symbol_24dp)
                         }
@@ -216,8 +214,14 @@ class ConverterFragment : Fragment() {
                     getApiResult()
 
                     when (convertedToCurrency) {
+                        "EUR" -> updateBottomUI("Euro",R.drawable.flag_of_europe, R.drawable.ic_euro_symbol_24dp)
                         "GBP" -> updateBottomUI("British Pounds",R.drawable.gbp_flag, R.drawable.ic_currency_pound_24dp)
                         "USD" -> updateBottomUI("US Dollar",R.drawable.flag_of_the_united_states, R.drawable.ic_usd_symbol_24dp)
+                        "DKK" -> updateBottomUI("Danish Krone",R.drawable.flag_of_denmark, R.drawable.krona)
+                        "SEK" -> updateBottomUI("Swedish Krone",R.drawable.flag_of_sweden, R.drawable.krona)
+                        "AUD" -> updateBottomUI("Australian Dollar",R.drawable.flag_of_australia, R.drawable.ic_usd_symbol_24dp)
+                        "CAD" -> updateBottomUI("Canadian Dollar",R.drawable.flag_of_canada, R.drawable.ic_usd_symbol_24dp)
+                        "JPY" -> updateBottomUI("Japanese Dollar",R.drawable.flag_of_japan, R.drawable.jpy_symbol)
                         else -> { // Note the block
                             updateBottomUI("Euro",R.drawable.flag_of_europe, R.drawable.ic_euro_symbol_24dp)
                         }
