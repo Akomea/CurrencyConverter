@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_converter"
+        android:icon="@drawable/ic_currency_exchange_24dp"
+        android:title="@string/title_converter" />
+
+    <item
+        android:id="@+id/navigation_rates"
+        android:icon="@drawable/ic_data_exploration_24dp"
+        android:title="@string/title_rates"/>
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/title_settings" />
+
+</menu>
